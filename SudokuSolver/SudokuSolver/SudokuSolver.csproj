@@ -53,6 +53,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\ICellCollection.cs" />
+    <Compile Include="Models\AbstractCellContainer.cs" />
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\Block.cs" />
     <Compile Include="Models\Column.cs" />

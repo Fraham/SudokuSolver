@@ -162,7 +162,7 @@ namespace SudokuSolverTests.Models
         [TestCase(6)]
         [TestCase(7)]
         [TestCase(8)]
-        [TestCase(9)]        
+        [TestCase(9)]
         public void Column_Number_Success(int number)
         {
             Column Column = new Column(1);
@@ -201,7 +201,7 @@ namespace SudokuSolverTests.Models
             }
         }
 
-        #endregion
+        #endregion Number
 
         #region AddCell
 
@@ -228,7 +228,7 @@ namespace SudokuSolverTests.Models
             Assert.AreEqual(amount, Column.Cells.Count);
         }
 
-        #endregion
+        #endregion AddCell
 
         #region RemoveOption
 
@@ -255,6 +255,8 @@ namespace SudokuSolverTests.Models
 
         #endregion RemoveOption
 
+        #region ProcessCells
+
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
@@ -275,5 +277,40 @@ namespace SudokuSolverTests.Models
             Assert.AreEqual(option, cell.Entry);
             Assert.AreEqual(new List<int>(), cell.AvailableOptions);
         }
+
+        [TestCase(1, 2)]
+        [TestCase(2, 3)]
+        [TestCase(3, 4)]
+        [TestCase(4, 5)]
+        [TestCase(5, 6)]
+        [TestCase(6, 7)]
+        [TestCase(7, 8)]
+        [TestCase(8, 9)]
+        [TestCase(9, 1)]
+        public void Column_ProcessCells_TwoCells_Success(int option, int option2)
+        {
+            Cell cell1 = new Cell(availableOptions: new List<int> { 1, 2 });
+            Cell cell2 = new Cell(availableOptions: new List<int> { 1 });
+
+            Column column = new Column(1, new List<Cell> { cell1, cell2 });
+
+            column.ProcessCells();
+
+            Assert.AreEqual(1, cell2.Entry);
+            Assert.AreEqual(new List<int>(), cell2.AvailableOptions);
+
+            Assert.AreEqual(null, cell1.Entry);
+            Assert.AreEqual(new List<int> { 2 }, cell1.AvailableOptions);
+
+            column.ProcessCells();
+
+            Assert.AreEqual(1, cell2.Entry);
+            Assert.AreEqual(new List<int>(), cell2.AvailableOptions);
+
+            Assert.AreEqual(2, cell1.Entry);
+            Assert.AreEqual(new List<int>(), cell1.AvailableOptions);
+        }
+
+        #endregion ProcessCells
     }
 }

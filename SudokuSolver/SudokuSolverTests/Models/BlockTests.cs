@@ -279,6 +279,39 @@ namespace SudokuSolverTests.Models
             Assert.AreEqual(new List<int>(), cell.AvailableOptions);
         }
 
+        [TestCase(1, 2)]
+        [TestCase(2, 3)]
+        [TestCase(3, 4)]
+        [TestCase(4, 5)]
+        [TestCase(5, 6)]
+        [TestCase(6, 7)]
+        [TestCase(7, 8)]
+        [TestCase(8, 9)]
+        [TestCase(9, 1)]
+        public void Block_ProcessCells_TwoCells_Success(int option, int option2)
+        {
+            Cell cell1 = new Cell(availableOptions: new List<int> { 1, 2 });
+            Cell cell2 = new Cell(availableOptions: new List<int> { 1 });
+
+            Block block = new Block(1, new List<Cell> { cell1, cell2 });
+
+            block.ProcessCells();
+
+            Assert.AreEqual(1, cell2.Entry);
+            Assert.AreEqual(new List<int>(), cell2.AvailableOptions);
+
+            Assert.AreEqual(null, cell1.Entry);
+            Assert.AreEqual(new List<int> { 2 }, cell1.AvailableOptions);
+
+            block.ProcessCells();
+
+            Assert.AreEqual(1, cell2.Entry);
+            Assert.AreEqual(new List<int>(), cell2.AvailableOptions);
+
+            Assert.AreEqual(2, cell1.Entry);
+            Assert.AreEqual(new List<int>(), cell1.AvailableOptions);
+        }
+
         #endregion ProcessCells
     }
 }

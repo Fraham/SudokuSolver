@@ -229,5 +229,51 @@ namespace SudokuSolverTests.Models
         }
 
         #endregion
+
+        #region RemoveOption
+
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
+        [TestCase(7)]
+        [TestCase(8)]
+        [TestCase(9)]
+        public void Row_RemoveOption_Success(int option)
+        {
+            Row row = new Row(1, new List<Cell> { new Cell(), new Cell(), new Cell(), new Cell(), new Cell(), new Cell() });
+
+            row.RemoveOption(option);
+
+            foreach (var cell in row.Cells)
+            {
+                Assert.That(cell.AvailableOptions, Has.No.Member(option));
+            }
+        }
+
+        #endregion RemoveOption
+
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
+        [TestCase(7)]
+        [TestCase(8)]
+        [TestCase(9)]
+        public void Row_ProcessCells_Success(int option)
+        {
+            Cell cell = new Cell(availableOptions: new List<int> { option });
+
+            Row row = new Row(1, new List<Cell> { cell });
+
+            row.ProcessCells();
+
+            Assert.AreEqual(option, cell.Entry);
+            Assert.AreEqual(new List<int>(), cell.AvailableOptions);
+        }
     }
 }

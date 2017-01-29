@@ -162,7 +162,7 @@ namespace SudokuSolverTests.Models
         [TestCase(6)]
         [TestCase(7)]
         [TestCase(8)]
-        [TestCase(9)]        
+        [TestCase(9)]
         public void Block_Number_Success(int number)
         {
             Block Block = new Block(1);
@@ -201,7 +201,7 @@ namespace SudokuSolverTests.Models
             }
         }
 
-        #endregion
+        #endregion Number
 
         #region AddCell
 
@@ -228,6 +228,57 @@ namespace SudokuSolverTests.Models
             Assert.AreEqual(amount, Block.Cells.Count);
         }
 
-        #endregion
+        #endregion AddCell
+
+        #region RemoveOption
+
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
+        [TestCase(7)]
+        [TestCase(8)]
+        [TestCase(9)]
+        public void Block_RemoveOption_Success(int option)
+        {
+            Block block = new Block(1, new List<Cell> { new Cell(), new Cell(), new Cell(), new Cell(), new Cell(), new Cell() });
+
+            block.RemoveOption(option);
+
+            foreach (var cell in block.Cells)
+            {
+                Assert.That(cell.AvailableOptions, Has.No.Member(option));
+                Assert.AreEqual(8, cell.AvailableOptions.Count);
+            }
+        }
+
+        #endregion RemoveOption
+
+        #region ProcessCells
+
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
+        [TestCase(7)]
+        [TestCase(8)]
+        [TestCase(9)]
+        public void Block_ProcessCells_Success(int option)
+        {
+            Cell cell = new Cell(availableOptions: new List<int> { option });
+
+            Block block = new Block(1, new List<Cell> { cell });
+
+            block.ProcessCells();
+
+            Assert.AreEqual(option, cell.Entry);
+            Assert.AreEqual(new List<int>(), cell.AvailableOptions);
+        }
+
+        #endregion ProcessCells
     }
 }

@@ -66,5 +66,28 @@ namespace SudokuSolver.Models
         {
             Cells.Add(cell);
         }
+
+        public void ProcessCells()
+        {
+            foreach (var cell in Cells)
+            {
+                if (cell.AvailableOptions.Count == 1)
+                {
+                    cell.Entry = cell.AvailableOptions.First();
+
+                    RemoveOption(cell.Entry.Value);
+                }
+            }
+        }
+
+        public void RemoveOption(int option)
+        {
+            //Cells.Where(c => c.Entry == null).ToList().ForEach(c => c.RemoveOption(option));
+
+            foreach (Cell cell in Cells)
+            {
+                cell.RemoveOption(option);
+            }
+        }
     }
 }

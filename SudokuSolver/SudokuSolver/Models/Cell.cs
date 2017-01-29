@@ -21,6 +21,17 @@ namespace SudokuSolver.Models
         }
 
         /// <summary>
+        /// Removes the option from the cell
+        /// </summary>
+        /// <param name="option">The option to remove</param>
+        public void RemoveOption(int option)
+        {
+            AvailableOptions.Remove(option);
+        }
+
+        #region Properties
+
+        /// <summary>
         /// The available options for the cell
         /// </summary>
         public ICollection<int> AvailableOptions
@@ -72,5 +83,7 @@ namespace SudokuSolver.Models
                 entry = value;
             }
         }
+
+        #endregion Properties
     }
 }

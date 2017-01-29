@@ -162,7 +162,7 @@ namespace SudokuSolverTests.Models
         [TestCase(6)]
         [TestCase(7)]
         [TestCase(8)]
-        [TestCase(9)]        
+        [TestCase(9)]
         public void Row_Number_Success(int number)
         {
             Row row = new Row(1);
@@ -201,7 +201,7 @@ namespace SudokuSolverTests.Models
             }
         }
 
-        #endregion
+        #endregion Number
 
         #region AddCell
 
@@ -228,6 +228,89 @@ namespace SudokuSolverTests.Models
             Assert.AreEqual(amount, row.Cells.Count);
         }
 
-        #endregion
+        #endregion AddCell
+
+        #region RemoveOption
+
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
+        [TestCase(7)]
+        [TestCase(8)]
+        [TestCase(9)]
+        public void Row_RemoveOption_Success(int option)
+        {
+            Row row = new Row(1, new List<Cell> { new Cell(), new Cell(), new Cell(), new Cell(), new Cell(), new Cell() });
+
+            row.RemoveOption(option);
+
+            foreach (var cell in row.Cells)
+            {
+                Assert.That(cell.AvailableOptions, Has.No.Member(option));
+            }
+        }
+
+        #endregion RemoveOption
+
+        #region ProcessCells
+
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
+        [TestCase(7)]
+        [TestCase(8)]
+        [TestCase(9)]
+        public void Row_ProcessCells_Success(int option)
+        {
+            Cell cell = new Cell(availableOptions: new List<int> { option });
+
+            Row row = new Row(1, new List<Cell> { cell });
+
+            row.ProcessCells();
+
+            Assert.AreEqual(option, cell.Entry);
+            Assert.AreEqual(new List<int>(), cell.AvailableOptions);
+        }
+
+        [TestCase(1, 2)]
+        [TestCase(2, 3)]
+        [TestCase(3, 4)]
+        [TestCase(4, 5)]
+        [TestCase(5, 6)]
+        [TestCase(6, 7)]
+        [TestCase(7, 8)]
+        [TestCase(8, 9)]
+        [TestCase(9, 1)]
+        public void Row_ProcessCells_TwoCells_Success(int option, int option2)
+        {
+            Cell cell1 = new Cell(availableOptions: new List<int> { 1, 2 });
+            Cell cell2 = new Cell(availableOptions: new List<int> { 1 });
+
+            Row row = new Row(1, new List<Cell> { cell1, cell2 });
+
+            row.ProcessCells();
+
+            Assert.AreEqual(1, cell2.Entry);
+            Assert.AreEqual(new List<int>(), cell2.AvailableOptions);
+
+            Assert.AreEqual(null, cell1.Entry);
+            Assert.AreEqual(new List<int> { 2 }, cell1.AvailableOptions);
+
+            row.ProcessCells();
+
+            Assert.AreEqual(1, cell2.Entry);
+            Assert.AreEqual(new List<int>(), cell2.AvailableOptions);
+
+            Assert.AreEqual(2, cell1.Entry);
+            Assert.AreEqual(new List<int>(), cell1.AvailableOptions);
+        }
+
+        #endregion ProcessCells
     }
 }

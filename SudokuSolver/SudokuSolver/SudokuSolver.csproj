@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Interfaces\ICellCollection.cs" />
     <Compile Include="Models\Cell.cs" />
+    <Compile Include="Models\Block.cs" />
     <Compile Include="Models\Column.cs" />
     <Compile Include="Models\Row.cs" />
     <Compile Include="Program.cs" />

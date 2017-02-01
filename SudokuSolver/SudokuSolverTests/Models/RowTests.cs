@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace SudokuSolverTests.Models
 {
+    [TestFixture]
     public class RowTests
     {
         #region Constructor

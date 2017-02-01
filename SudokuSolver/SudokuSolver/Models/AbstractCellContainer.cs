@@ -82,8 +82,6 @@ namespace SudokuSolver.Models
 
         public void RemoveOption(int option)
         {
-            //Cells.Where(c => c.Entry == null).ToList().ForEach(c => c.RemoveOption(option));
-
             foreach (Cell cell in Cells)
             {
                 cell.RemoveOption(option);

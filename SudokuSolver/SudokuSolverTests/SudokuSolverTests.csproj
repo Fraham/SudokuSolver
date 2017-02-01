@@ -53,7 +53,9 @@
   <ItemGroup>
     <Compile Include="Models\CellTests.cs" />
     <Compile Include="Models\BlockTests.cs" />
-    <Compile Include="Models\ColumnTest.cs" />
+    <Compile Include="Models\ColumnTests.cs" />
+    <Compile Include="Models\GridReferenceTests.cs" />
+    <Compile Include="Models\GridTests.cs" />
     <Compile Include="Models\RowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

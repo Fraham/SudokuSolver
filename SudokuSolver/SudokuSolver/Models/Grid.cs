@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SudokuSolver.Models
 {
@@ -38,108 +40,21 @@ namespace SudokuSolver.Models
 
         private void AddCellToRow(Cell cell, int index)
         {
-            int rowIndex;
-            if (index < 9)
-            {
-                rowIndex = 0;
-            }
-            else if (index < 18)
-            {
-                rowIndex = 1;
-            }
-            else if (index < 27)
-            {
-                rowIndex = 2;
-            }
-            else if (index < 36)
-            {
-                rowIndex = 3;
-            }
-            else if (index < 45)
-            {
-                rowIndex = 4;
-            }
-            else if (index < 54)
-            {
-                rowIndex = 5;
-            }
-            else if (index < 63)
-            {
-                rowIndex = 6;
-            }
-            else if (index < 72)
-            {
-                rowIndex = 7;
-            }
-            else if (index < 81)
-            {
-                rowIndex = 8;
-            }
-            else
-            {
-                rowIndex = 9;
-            }
+            int rowIndex = Helper.CellFinder.GetRowNumber(index) - 1;
 
             Rows.ElementAt(rowIndex).AddCell(cell);
         }
 
         private void AddCellToColumn(Cell cell, int index)
         {
-            Columns.ElementAt(index % 9).AddCell(cell);
+            int columnIndex = Helper.CellFinder.GetColumnNumber(index) - 1;
+
+            Columns.ElementAt(columnIndex).AddCell(cell);
         }
 
         private void AddCellToBlock(Cell cell, int index)
         {
-            var rowIndex = Rows.ToList().IndexOf(Rows.First(r => r.Cells.Contains(cell)));
-            var columnIndex = Columns.ToList().IndexOf(Columns.First(r => r.Cells.Contains(cell)));
-
-            int blockIndex;
-
-            if (rowIndex < 3)
-            {
-                if (columnIndex < 3)
-                {
-                    blockIndex = 0;
-                }
-                else if (columnIndex < 6)
-                {
-                    blockIndex = 1;
-                }
-                else
-                {
-                    blockIndex = 2;
-                }
-            }
-            else if (rowIndex < 6)
-            {
-                if (columnIndex < 3)
-                {
-                    blockIndex = 1;
-                }
-                else if (columnIndex < 6)
-                {
-                    blockIndex = 2;
-                }
-                else
-                {
-                    blockIndex = 3;
-                }
-            }
-            else
-            {
-                if (columnIndex < 3)
-                {
-                    blockIndex = 4;
-                }
-                else if (columnIndex < 6)
-                {
-                    blockIndex = 5;
-                }
-                else
-                {
-                    blockIndex = 6;
-                }
-            }
+            int blockIndex = Helper.CellFinder.GetGridReference(index).Block - 1;
 
             Blocks.ElementAt(blockIndex).AddCell(cell);
         }

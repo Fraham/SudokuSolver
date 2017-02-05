@@ -80,6 +80,17 @@ namespace SudokuSolver.Models
             }
         }
 
+        public void ReduceCells()
+        {
+            foreach (var cell in Cells)
+            {
+                if (cell.Entry != null)
+                {
+                    RemoveOption(cell.Entry.Value);
+                }
+            }
+        }
+
         public void RemoveOption(int option)
         {
             foreach (Cell cell in Cells)

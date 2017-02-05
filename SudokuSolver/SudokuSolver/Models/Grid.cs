@@ -38,6 +38,24 @@ namespace SudokuSolver.Models
             }
         }
 
+        public void ProcessCells()
+        {
+            foreach (var column in Columns)
+            {
+                column.ReduceCells();
+            }
+
+            foreach (var row in Rows)
+            {
+                row.ReduceCells();
+            }
+
+            foreach (var block in Blocks)
+            {
+                block.ReduceCells();
+            }
+        }
+
         private void AddCellToRow(Cell cell, int index)
         {
             int rowIndex = Helper.CellFinder.GetRowNumber(index) - 1;

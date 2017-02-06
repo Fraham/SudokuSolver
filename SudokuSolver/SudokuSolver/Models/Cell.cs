@@ -84,6 +84,21 @@ namespace SudokuSolver.Models
             }
         }
 
+        public new string ToString
+        {
+            get
+            {
+                if (Entry == null)
+                {
+                    return " ";
+                }
+                else
+                {
+                    return Entry.ToString();
+                }
+            }
+        }
+
         #endregion Properties
     }
 }

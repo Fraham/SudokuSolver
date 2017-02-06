@@ -52,14 +52,20 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CellFinder.cs" />
     <Compile Include="Interfaces\ICellCollection.cs" />
     <Compile Include="Models\AbstractCellContainer.cs" />
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\Block.cs" />
     <Compile Include="Models\Column.cs" />
+    <Compile Include="Models\Grid.cs" />
+    <Compile Include="Models\GridReference.cs" />
     <Compile Include="Models\Row.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

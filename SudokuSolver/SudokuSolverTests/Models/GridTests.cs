@@ -230,7 +230,7 @@ namespace SudokuSolverTests.Models
 
             var grid = new Grid(cells);
 
-            var finalString = "| 3 | 7 | 5 | 8 | 1 | 2 | 9 | 6 | 4 |\r\n| 8 | 9 | 6 | 5 | 3 | 4 | 2 | 7 | 1 |\r\n| 4 | 2 | 1 | 9 | 7 | 6 | 5 | 3 | 8 |\r\n| 1 | 5 | 8 | 4 | 6 | 3 | 7 | 2 | 9 |\r\n| 7 | 6 | 4 | 2 | 9 | 5 | 8 | 1 | 3 |\r\n| 9 | 3 | 2 | 7 | 8 | 1 | 6 | 4 | 5 |\r\n| 5 | 4 | 9 | 1 | 2 | 7 | 3 | 8 | 6 |\r\n| 6 | 1 | 7 | 3 | 5 | 8 | 4 | 9 | 2 |\r\n| 2 | 8 | 3 | 6 | 4 | 9 | 1 | 5 | 7 |\r\n";
+            var finalString = $"| 3 | 7 | 5 | 8 | 1 | 2 | 9 | 6 | 4 |{Environment.NewLine}| 8 | 9 | 6 | 5 | 3 | 4 | 2 | 7 | 1 |{Environment.NewLine}| 4 | 2 | 1 | 9 | 7 | 6 | 5 | 3 | 8 |{Environment.NewLine}| 1 | 5 | 8 | 4 | 6 | 3 | 7 | 2 | 9 |{Environment.NewLine}| 7 | 6 | 4 | 2 | 9 | 5 | 8 | 1 | 3 |{Environment.NewLine}| 9 | 3 | 2 | 7 | 8 | 1 | 6 | 4 | 5 |{Environment.NewLine}| 5 | 4 | 9 | 1 | 2 | 7 | 3 | 8 | 6 |{Environment.NewLine}| 6 | 1 | 7 | 3 | 5 | 8 | 4 | 9 | 2 |{Environment.NewLine}| 2 | 8 | 3 | 6 | 4 | 9 | 1 | 5 | 7 |{Environment.NewLine}";
 
             Assert.AreEqual(finalString, grid.CompleteGrid());
         }
@@ -260,7 +260,9 @@ namespace SudokuSolverTests.Models
 
             var grid = new Grid(cells);
 
-            var finalString = "|   |   |   |   |   |   | 9 |   |   |\r\n|   | 9 |   | 5 |   |   | 2 |   | 1 |\r\n|   | 2 | 1 |   | 7 | 6 |   |   |   |\r\n| 1 | 5 |   | 4 |   |   |   |   |   |\r\n|   | 6 |   |   | 9 |   |   | 1 |   |\r\n|   |   |   |   |   | 1 |   | 4 | 5 |\r\n|   | 4 |   | 1 | 2 |   | 3 | 8 |   |\r\n| 6 | 1 | 7 | 3 |   | 8 |   | 9 |   |\r\n|   | 8 | 3 |   |   |   |   |   |   |\r\n";
+            
+
+            var finalString = $"|   |   |   |   |   |   | 9 |   |   |{Environment.NewLine}|   | 9 |   | 5 |   |   | 2 |   | 1 |{Environment.NewLine}|   | 2 | 1 |   | 7 | 6 |   |   |   |{Environment.NewLine}| 1 | 5 |   | 4 |   |   |   |   |   |{Environment.NewLine}|   | 6 |   |   | 9 |   |   | 1 |   |{Environment.NewLine}|   |   |   |   |   | 1 |   | 4 | 5 |{Environment.NewLine}|   | 4 |   | 1 | 2 |   | 3 | 8 |   |{Environment.NewLine}| 6 | 1 | 7 | 3 |   | 8 |   | 9 |   |{Environment.NewLine}|   | 8 | 3 |   |   |   |   |   |   |{Environment.NewLine}";
 
             Assert.AreEqual(finalString, grid.ProcessCells());
         }

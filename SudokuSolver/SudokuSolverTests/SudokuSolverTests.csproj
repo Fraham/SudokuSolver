@@ -52,6 +52,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Helper\CellFinderTests.cs" />
+    <Compile Include="Helper\GridHelperTests.cs" />
     <Compile Include="Models\CellTests.cs" />
     <Compile Include="Models\BlockTests.cs" />
     <Compile Include="Models\ColumnTests.cs" />

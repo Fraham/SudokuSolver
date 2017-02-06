@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SudokuSolver.Models;
+using SudokuSolver.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -214,21 +215,7 @@ namespace SudokuSolverTests.Models
         {
             int[] numbers = new int[] { 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 9, 0, 5, 0, 0, 2, 0, 1, 0, 2, 1, 0, 7, 6, 0, 0, 0, 1, 5, 0, 4, 0, 0, 0, 0, 0, 0, 6, 0, 0, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 4, 5, 0, 0, 0, 1, 2, 0, 3, 8, 0, 6, 0, 7, 0, 0, 8, 0, 9, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0 };
 
-            var cells = new List<Cell>();
-
-            foreach (var number in numbers)
-            {
-                if (number != 0)
-                {
-                    cells.Add(new Cell(number, new List<int>()));
-                }
-                else
-                {
-                    cells.Add(new Cell(availableOptions: new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 }));
-                }
-            }
-
-            var grid = new Grid(cells);
+            var grid = GridHelper.Get(numbers);
 
             var finalString = $"| 3 | 7 | 5 | 8 | 1 | 2 | 9 | 6 | 4 |{Environment.NewLine}| 8 | 9 | 6 | 5 | 3 | 4 | 2 | 7 | 1 |{Environment.NewLine}| 4 | 2 | 1 | 9 | 7 | 6 | 5 | 3 | 8 |{Environment.NewLine}| 1 | 5 | 8 | 4 | 6 | 3 | 7 | 2 | 9 |{Environment.NewLine}| 7 | 6 | 4 | 2 | 9 | 5 | 8 | 1 | 3 |{Environment.NewLine}| 9 | 3 | 2 | 7 | 8 | 1 | 6 | 4 | 5 |{Environment.NewLine}| 5 | 4 | 9 | 1 | 2 | 7 | 3 | 8 | 6 |{Environment.NewLine}| 6 | 1 | 7 | 3 | 5 | 8 | 4 | 9 | 2 |{Environment.NewLine}| 2 | 8 | 3 | 6 | 4 | 9 | 1 | 5 | 7 |{Environment.NewLine}";
 
@@ -244,23 +231,7 @@ namespace SudokuSolverTests.Models
         {
             int[] numbers = new int[] { 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 9, 0, 5, 0, 0, 2, 0, 1, 0, 2, 1, 0, 7, 6, 0, 0, 0, 1, 5, 0, 4, 0, 0, 0, 0, 0, 0, 6, 0, 0, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 4, 5, 0, 0, 0, 1, 2, 0, 3, 8, 0, 6, 0, 7, 0, 0, 8, 0, 9, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0 };
 
-            var cells = new List<Cell>();
-
-            foreach (var number in numbers)
-            {
-                if (number != 0)
-                {
-                    cells.Add(new Cell(number, new List<int>()));
-                }
-                else
-                {
-                    cells.Add(new Cell(availableOptions: new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 }));
-                }
-            }
-
-            var grid = new Grid(cells);
-
-            
+            var grid = GridHelper.Get(numbers);
 
             var finalString = $"|   |   |   |   |   |   | 9 |   |   |{Environment.NewLine}|   | 9 |   | 5 |   |   | 2 |   | 1 |{Environment.NewLine}|   | 2 | 1 |   | 7 | 6 |   |   |   |{Environment.NewLine}| 1 | 5 |   | 4 |   |   |   |   |   |{Environment.NewLine}|   | 6 |   |   | 9 |   |   | 1 |   |{Environment.NewLine}|   |   |   |   |   | 1 |   | 4 | 5 |{Environment.NewLine}|   | 4 |   | 1 | 2 |   | 3 | 8 |   |{Environment.NewLine}| 6 | 1 | 7 | 3 |   | 8 |   | 9 |   |{Environment.NewLine}|   | 8 | 3 |   |   |   |   |   |   |{Environment.NewLine}";
 

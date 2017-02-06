@@ -95,10 +95,10 @@ namespace SudokuSolverTests.Models
 
         #endregion Constructor
 
-        #region ProcessCells
+        #region ReduceCells
 
         [Test]
-        public void Grid_ProcessCells_Success()
+        public void Grid_ReduceCells_Success()
         {
             var cells = new List<Cell>();
 
@@ -160,9 +160,9 @@ namespace SudokuSolverTests.Models
                 }
             }
 
-            grid.ProcessCells();
+            grid.ReduceCells();
 
-             column = grid.Columns.First(b => b.Number == 1);
+            column = grid.Columns.First(b => b.Number == 1);
 
             foreach (var cell in column.Cells)
             {
@@ -176,7 +176,7 @@ namespace SudokuSolverTests.Models
                 }
             }
 
-             row = grid.Rows.First(b => b.Number == 1);
+            row = grid.Rows.First(b => b.Number == 1);
 
             foreach (var cell in row.Cells)
             {
@@ -190,7 +190,7 @@ namespace SudokuSolverTests.Models
                 }
             }
 
-             block = grid.Blocks.First(b => b.Number == 1);
+            block = grid.Blocks.First(b => b.Number == 1);
 
             foreach (var cell in block.Cells)
             {
@@ -203,6 +203,66 @@ namespace SudokuSolverTests.Models
                     Assert.AreEqual(new List<int> { 2, 3, 4, 5, 6, 7, 8, 9 }, cell.AvailableOptions);
                 }
             }
+        }
+
+        #endregion ReduceCells
+
+        #region CompleteAll
+
+        [Test]
+        public void Grid_CompleteAll_Success()
+        {
+            int[] numbers = new int[] { 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 9, 0, 5, 0, 0, 2, 0, 1, 0, 2, 1, 0, 7, 6, 0, 0, 0, 1, 5, 0, 4, 0, 0, 0, 0, 0, 0, 6, 0, 0, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 4, 5, 0, 0, 0, 1, 2, 0, 3, 8, 0, 6, 0, 7, 0, 0, 8, 0, 9, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0 };
+
+            var cells = new List<Cell>();
+
+            foreach (var number in numbers)
+            {
+                if (number != 0)
+                {
+                    cells.Add(new Cell(number, new List<int>()));
+                }
+                else
+                {
+                    cells.Add(new Cell(availableOptions: new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 }));
+                }
+            }
+
+            var grid = new Grid(cells);
+
+            var finalString = "| 3 | 7 | 5 | 8 | 1 | 2 | 9 | 6 | 4 |\r\n| 8 | 9 | 6 | 5 | 3 | 4 | 2 | 7 | 1 |\r\n| 4 | 2 | 1 | 9 | 7 | 6 | 5 | 3 | 8 |\r\n| 1 | 5 | 8 | 4 | 6 | 3 | 7 | 2 | 9 |\r\n| 7 | 6 | 4 | 2 | 9 | 5 | 8 | 1 | 3 |\r\n| 9 | 3 | 2 | 7 | 8 | 1 | 6 | 4 | 5 |\r\n| 5 | 4 | 9 | 1 | 2 | 7 | 3 | 8 | 6 |\r\n| 6 | 1 | 7 | 3 | 5 | 8 | 4 | 9 | 2 |\r\n| 2 | 8 | 3 | 6 | 4 | 9 | 1 | 5 | 7 |\r\n";
+
+            Assert.AreEqual(finalString, grid.CompleteGrid());
+        }
+
+        #endregion CompleteAll
+
+        #region ProcessCells
+
+        [Test]
+        public void Grid_ProcessCells_Success()
+        {
+            int[] numbers = new int[] { 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 9, 0, 5, 0, 0, 2, 0, 1, 0, 2, 1, 0, 7, 6, 0, 0, 0, 1, 5, 0, 4, 0, 0, 0, 0, 0, 0, 6, 0, 0, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 4, 5, 0, 0, 0, 1, 2, 0, 3, 8, 0, 6, 0, 7, 0, 0, 8, 0, 9, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0 };
+
+            var cells = new List<Cell>();
+
+            foreach (var number in numbers)
+            {
+                if (number != 0)
+                {
+                    cells.Add(new Cell(number, new List<int>()));
+                }
+                else
+                {
+                    cells.Add(new Cell(availableOptions: new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 }));
+                }
+            }
+
+            var grid = new Grid(cells);
+
+            var finalString = "|   |   |   |   |   |   | 9 |   |   |\r\n|   | 9 |   | 5 |   |   | 2 |   | 1 |\r\n|   | 2 | 1 |   | 7 | 6 |   |   |   |\r\n| 1 | 5 |   | 4 |   |   |   |   |   |\r\n|   | 6 |   |   | 9 |   |   | 1 |   |\r\n|   |   |   |   |   | 1 |   | 4 | 5 |\r\n|   | 4 |   | 1 | 2 |   | 3 | 8 |   |\r\n| 6 | 1 | 7 | 3 |   | 8 |   | 9 |   |\r\n|   | 8 | 3 |   |   |   |   |   |   |\r\n";
+
+            Assert.AreEqual(finalString, grid.ProcessCells());
         }
 
         #endregion

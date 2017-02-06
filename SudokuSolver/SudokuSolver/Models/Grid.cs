@@ -38,7 +38,7 @@ namespace SudokuSolver.Models
             }
         }
 
-        public void ProcessCells()
+        public void ReduceCells()
         {
             foreach (var column in Columns)
             {
@@ -54,6 +54,104 @@ namespace SudokuSolver.Models
             {
                 block.ReduceCells();
             }
+        }
+
+        public void BigTask()
+        {
+            foreach (var column in Columns)
+            {
+                column.BigTask();
+
+                ReduceCells();
+            }
+
+            foreach (var row in Rows)
+            {
+                row.BigTask();
+
+                ReduceCells();
+            }
+
+            foreach (var block in Blocks)
+            {
+                block.BigTask();
+
+                ReduceCells();
+            }
+        }
+
+        public string ProcessCells()
+        {
+            foreach (var column in Columns)
+            {
+                column.ProcessCells();
+
+                ReduceCells();
+            }
+
+            foreach (var row in Rows)
+            {
+                row.ProcessCells();
+
+                ReduceCells();
+            }
+
+            foreach (var block in Blocks)
+            {
+                block.ProcessCells();
+
+                ReduceCells();
+            }
+
+            return ToString;
+        }
+
+        public string AllProcesses()
+        {
+            foreach (var column in Columns)
+            {
+                column.ProcessCells();
+
+                ReduceCells();
+            }
+
+            foreach (var row in Rows)
+            {
+                row.ProcessCells();
+
+                ReduceCells();
+            }
+
+            foreach (var block in Blocks)
+            {
+                block.ProcessCells();
+
+                ReduceCells();
+            }
+
+            BigTask();
+
+            return ToString;
+        }
+
+        public string CompleteGrid()
+        {
+            ReduceCells();
+
+            var repeat = Rows.Count(row => row.Cells.Count(cell => cell.AvailableOptions.Count > 0) > 0);
+
+            var count = 0;
+
+            while (repeat > 0 && count < 100)
+            {
+                AllProcesses();
+
+                repeat = Rows.Count(row => row.Cells.Count(cell => cell.AvailableOptions.Count > 0) > 0);
+
+                count++;
+            }
+
+            return ToString;
         }
 
         private void AddCellToRow(Cell cell, int index)
@@ -113,6 +211,21 @@ namespace SudokuSolver.Models
             set
             {
                 blocks = value;
+            }
+        }
+
+        public new string ToString
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (var row in Rows)
+                {
+                    sb.AppendLine(row.ToString);
+                }
+
+                return sb.ToString();
             }
         }
     }

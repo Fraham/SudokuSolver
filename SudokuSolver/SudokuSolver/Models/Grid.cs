@@ -60,21 +60,21 @@ namespace SudokuSolver.Models
         {
             foreach (var column in Columns)
             {
-                column.BigTask();
+                column.ProcessSingleOptionLeftInCollection();
 
                 ReduceCells();
             }
 
             foreach (var row in Rows)
             {
-                row.BigTask();
+                row.ProcessSingleOptionLeftInCollection();
 
                 ReduceCells();
             }
 
             foreach (var block in Blocks)
             {
-                block.BigTask();
+                block.ProcessSingleOptionLeftInCollection();
 
                 ReduceCells();
             }

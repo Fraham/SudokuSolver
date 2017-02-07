@@ -14,14 +14,15 @@ namespace SudokuSolver.Models
 
         private ICollection<int> optionsLeft = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-        public static string Id = "None";
-
         public AbstractCellContainer(int number, ICollection<Cell> cells = default(List<Cell>))
         {
             Cells = cells ?? new List<Cell>();
             Number = number;
         }
 
+        /// <summary>
+        /// Cells for the collection
+        /// </summary>
         public ICollection<Cell> Cells
         {
             get
@@ -44,6 +45,9 @@ namespace SudokuSolver.Models
             }
         }
 
+        /// <summary>
+        /// The number of the collection
+        /// </summary>
         public int Number
         {
             get
@@ -66,11 +70,18 @@ namespace SudokuSolver.Models
             }
         }
 
+        /// <summary>
+        /// Adds a cell to the collection
+        /// </summary>
+        /// <param name="cell">The cell being added</param>
         public void AddCell(Cell cell)
         {
             Cells.Add(cell);
         }
 
+        /// <summary>
+        /// Processes cells which only have one option left
+        /// </summary>
         public void ProcessCells()
         {
             if (optionsLeft.Count > 0)
@@ -89,6 +100,9 @@ namespace SudokuSolver.Models
             }
         }
 
+        /// <summary>
+        /// Removes the option from all the cells in the collection once a new entry has been found
+        /// </summary>
         public void ReduceCells()
         {
             foreach (var cell in Cells)
@@ -100,10 +114,15 @@ namespace SudokuSolver.Models
             }
         }
 
-        public void BigTask()
+        /// <summary>
+        /// If only one cell has an option left in the collection it will set that cell to be the option
+        /// </summary>
+        public void ProcessSingleOptionLeftInCollection()
         {
-            foreach (var number in optionsLeft)
+            for (int i = 0; i < optionsLeft.Count; i++)
             {
+                var number = optionsLeft.ToArray()[i];
+
                 if (Cells.Count(op => op.AvailableOptions.Contains(number)) == 1)
                 {
                     var cell = Cells.First(op => op.AvailableOptions.Contains(number));
@@ -113,12 +132,14 @@ namespace SudokuSolver.Models
                     cell.AvailableOptions = new List<int>();
 
                     RemoveOption(cell.Entry.Value);
-
-                    break;
                 }
             }
         }
 
+        /// <summary>
+        /// Removes the option from the collection and all the cells in the collection
+        /// </summary>
+        /// <param name="option">The option being removed</param>
         public void RemoveOption(int option)
         {
             optionsLeft.Remove(option);

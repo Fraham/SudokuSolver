@@ -73,7 +73,7 @@ namespace SudokuSolver.Helper
                 throw new ArgumentException("Index is too high");
             }
 
-            return GetBlockNumber(GetRowNumber(index) - 1, GetColumnNumber(index) - 1);
+            return GetBlockNumber(GetRowNumber(index), GetColumnNumber(index));
         }
 
         /// <summary>
@@ -84,51 +84,31 @@ namespace SudokuSolver.Helper
         /// <returns>The block number</returns>
         public static int GetBlockNumber(int row, int column)
         {
-            if (row < 3)
+            if (row < 1 || row > 9)
             {
-                if (column < 3)
-                {
-                    return 1;
-                }
-                else if (column < 6)
-                {
-                    return 2;
-                }
-                else
-                {
-                    return 3;
-                }
+                throw new ArgumentException("Row is out of range");
             }
-            else if (row < 6)
+            if (column < 1 || column > 9)
             {
-                if (column < 3)
-                {
-                    return 4;
-                }
-                else if (column < 6)
-                {
-                    return 5;
-                }
-                else
-                {
-                    return 6;
-                }
+                throw new ArgumentException("Column is out of range");
             }
-            else
+
+            int rowIndex = GetIndex(row);
+            int columnIndex = GetIndex(column);
+
+            int[,] array = new int[,]
             {
-                if (column < 3)
-                {
-                    return 7;
-                }
-                else if (column < 6)
-                {
-                    return 8;
-                }
-                else
-                {
-                    return 9;
-                }
-            }
+                {1,2,3 },
+                {4,5,6 },
+                {7,8,9 }
+            };
+
+            return array[rowIndex, columnIndex];
+        }
+
+        private static int GetIndex(int number)
+        {
+            return (int)Math.Ceiling(number / 3d) - 1;
         }
     }
 }

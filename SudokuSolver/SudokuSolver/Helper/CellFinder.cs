@@ -1,19 +1,27 @@
 ﻿using SudokuSolver.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SudokuSolver.Helper
 {
-    public class CellFinder
+    public static class CellFinder
     {
+        /// <summary>
+        /// Gets the grid reference from the index provided
+        /// </summary>
+        /// <param name="index">The index</param>
+        /// <returns>The cell reference</returns>
+        /// <exception cref="ArgumentException">Index out of range</exception>
         public static GridReference GetGridReference(int index)
         {
             return new GridReference(GetRowNumber(index), GetColumnNumber(index), GetBlockNumber(index));
         }
 
+        /// <summary>
+        /// Gets the row number from the index provided
+        /// </summary>
+        /// <param name="index">The index</param>
+        /// <returns>The row number</returns>
+        /// <exception cref="ArgumentException">Index out of range</exception>
         public static int GetRowNumber(int index)
         {
             if (index < 0)
@@ -25,44 +33,15 @@ namespace SudokuSolver.Helper
                 throw new ArgumentException("Index is too high");
             }
 
-            if (index < 9)
-            {
-                return 1;
-            }
-            else if (index < 18)
-            {
-                return 2;
-            }
-            else if (index < 27)
-            {
-                return 3;
-            }
-            else if (index < 36)
-            {
-                return 4;
-            }
-            else if (index < 45)
-            {
-                return 5;
-            }
-            else if (index < 54)
-            {
-                return 6;
-            }
-            else if (index < 63)
-            {
-                return 7;
-            }
-            else if (index < 72)
-            {
-                return 8;
-            }
-            else
-            {
-                return 9;
-            }
+            return ((index - (index % 9)) / 9) + 1;
         }
 
+        /// <summary>
+        /// Gets the column number from the index provided
+        /// </summary>
+        /// <param name="index">The index</param>
+        /// <returns>The column number</returns>
+        /// <exception cref="ArgumentException">Index out of range</exception>
         public static int GetColumnNumber(int index)
         {
             if (index < 0)
@@ -77,6 +56,12 @@ namespace SudokuSolver.Helper
             return (index % 9) + 1;
         }
 
+        /// <summary>
+        /// Gets the block number from the index provided
+        /// </summary>
+        /// <param name="index">The index</param>
+        /// <returns>The block number</returns>
+        /// <exception cref="ArgumentException">Index out of range</exception>
         public static int GetBlockNumber(int index)
         {
             if (index < 0)
@@ -88,56 +73,42 @@ namespace SudokuSolver.Helper
                 throw new ArgumentException("Index is too high");
             }
 
-            return GetBlockNumber(GetRowNumber(index) - 1, GetColumnNumber(index) - 1);
+            return GetBlockNumber(GetRowNumber(index), GetColumnNumber(index));
         }
 
+        /// <summary>
+        /// Gets the block number from the provided row and column
+        /// </summary>
+        /// <param name="row">The row number</param>
+        /// <param name="column">The column number</param>
+        /// <returns>The block number</returns>
         public static int GetBlockNumber(int row, int column)
         {
-            if (row < 3)
+            if (row < 1 || row > 9)
             {
-                if (column < 3)
-                {
-                    return 1;
-                }
-                else if (column < 6)
-                {
-                    return 2;
-                }
-                else
-                {
-                    return 3;
-                }
+                throw new ArgumentException("Row is out of range");
             }
-            else if (row < 6)
+            if (column < 1 || column > 9)
             {
-                if (column < 3)
-                {
-                    return 4;
-                }
-                else if (column < 6)
-                {
-                    return 5;
-                }
-                else
-                {
-                    return 6;
-                }
+                throw new ArgumentException("Column is out of range");
             }
-            else
+
+            int rowIndex = GetIndex(row);
+            int columnIndex = GetIndex(column);
+
+            int[,] array = new int[,]
             {
-                if (column < 3)
-                {
-                    return 7;
-                }
-                else if (column < 6)
-                {
-                    return 8;
-                }
-                else
-                {
-                    return 9;
-                }
-            }
+                {1,2,3 },
+                {4,5,6 },
+                {7,8,9 }
+            };
+
+            return array[rowIndex, columnIndex];
+        }
+
+        private static int GetIndex(int number)
+        {
+            return (int)Math.Ceiling(number / 3d) - 1;
         }
     }
 }

@@ -53,6 +53,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\CellFinder.cs" />
+    <Compile Include="Helper\GridHelper.cs" />
     <Compile Include="Interfaces\ICellCollection.cs" />
     <Compile Include="Models\AbstractCellContainer.cs" />
     <Compile Include="Models\Cell.cs" />

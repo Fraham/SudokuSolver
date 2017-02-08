@@ -1,11 +1,11 @@
 ﻿using NUnit.Framework;
-using System;
 using SudokuSolver.Helper;
+using System;
 
 namespace SudokuSolverTests.Helper
 {
     [TestFixture]
-    class CellFinderTests
+    internal class CellFinderTests
     {
         #region GetGridReference
 
@@ -23,7 +23,7 @@ namespace SudokuSolverTests.Helper
             Assert.AreEqual(block, gridReference.Block);
         }
 
-        #endregion
+        #endregion GetGridReference
 
         #region GetRowNumber
 
@@ -59,7 +59,7 @@ namespace SudokuSolverTests.Helper
             Assert.AreEqual("Index is too high", ex.Message);
         }
 
-        #endregion
+        #endregion GetRowNumber
 
         #region GetColumnNumber
 
@@ -95,7 +95,7 @@ namespace SudokuSolverTests.Helper
             Assert.AreEqual("Index is too high", ex.Message);
         }
 
-        #endregion
+        #endregion GetColumnNumber
 
         #region GetBlockNumber
 
@@ -117,7 +117,7 @@ namespace SudokuSolverTests.Helper
         [TestCase(-9)]
         public void CellFinder_GetBlockNumber_Index_TooLow_Failure(int index)
         {
-            var ex = Assert.Throws<ArgumentException>(delegate { var row = CellFinder.GetBlockNumber(index); });
+            var ex = Assert.Throws<ArgumentException>(delegate { var block = CellFinder.GetBlockNumber(index); });
 
             Assert.AreEqual("Index is too small", ex.Message);
         }
@@ -126,11 +126,47 @@ namespace SudokuSolverTests.Helper
         [TestCase(82)]
         public void CellFinder_GetBlockNumber_Index_TooHigh_Failure(int index)
         {
-            var ex = Assert.Throws<ArgumentException>(delegate { var row = CellFinder.GetBlockNumber(index); });
+            var ex = Assert.Throws<ArgumentException>(delegate { var block = CellFinder.GetBlockNumber(index); });
 
             Assert.AreEqual("Index is too high", ex.Message);
         }
 
-        #endregion
+        [TestCase(1, 1, 1)]
+        [TestCase(4, 2, 2)]
+        [TestCase(7, 3, 3)]
+        [TestCase(2, 4, 4)]
+        [TestCase(5, 5, 5)]
+        [TestCase(8, 6, 6)]
+        [TestCase(3, 7, 7)]
+        [TestCase(6, 8, 8)]
+        [TestCase(9, 9, 9)]
+        public void CellFinder_GetBlockNumber_RowColumn_Success(int column, int row, int block)
+        {
+            Assert.AreEqual(block, CellFinder.GetBlockNumber(row, column));
+        }
+
+        [TestCase(100)]
+        [TestCase(82)]
+        [TestCase(-1)]
+        [TestCase(-9)]
+        public void CellFinder_GetBlockNumber_RowColumn_Column_Failure(int column)
+        {
+            var ex = Assert.Throws<ArgumentException>(delegate { var block = CellFinder.GetBlockNumber(1, column); });
+
+            Assert.AreEqual("Column is out of range", ex.Message);
+        }
+
+        [TestCase(100)]
+        [TestCase(82)]
+        [TestCase(-1)]
+        [TestCase(-9)]
+        public void CellFinder_GetBlockNumber_RowColumn_Row_Failure(int row)
+        {
+            var ex = Assert.Throws<ArgumentException>((TestDelegate)delegate { var block = CellFinder.GetBlockNumber(row, 1); });
+
+            Assert.AreEqual("Row is out of range", ex.Message);
+        }
+
+        #endregion GetBlockNumber
     }
 }

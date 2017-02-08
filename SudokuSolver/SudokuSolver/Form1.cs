@@ -1,19 +1,13 @@
 ﻿using SudokuSolver.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SudokuSolver
 {
     public partial class Form1 : Form
     {
-        Grid grid;
+        private Grid grid;
+
         public Form1()
         {
             InitializeComponent();
@@ -24,11 +18,6 @@ namespace SudokuSolver
             grid = Helper.GridHelper.Get(numbers);
 
             txtDisplay.Text = grid.ToString;
-        }
-
-        private void Process()
-        {
-            txtDisplay.Text = grid.CompleteGrid();
         }
 
         private void btnReduce_Click(object sender, EventArgs e)
@@ -51,7 +40,7 @@ namespace SudokuSolver
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
-            Process();
+            txtDisplay.Text = grid.CompleteGrid();
         }
     }
 }

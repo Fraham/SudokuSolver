@@ -43,7 +43,7 @@ namespace SudokuSolverTests.Repositories.Input.Reader
         {
             using (var stream = Repo.ReaderFactory.GetReader().OpenFile(fileName))
             {
-                Assert.AreEqual(fileName + "\r\n", stream.ReadToEnd());
+                Assert.AreEqual(fileName + Environment.NewLine, stream.ReadToEnd());
             }
         }
 

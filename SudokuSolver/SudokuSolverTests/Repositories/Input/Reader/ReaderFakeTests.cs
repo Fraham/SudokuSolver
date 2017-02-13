@@ -14,10 +14,10 @@ namespace SudokuSolverTests.Repositories.Input.Reader
         {
             using (var stream = Repo.Input.Reader.ReaderFactory.GetReader(Repo.FakeEnum.Fake).OpenFile(fileName))
             {
-                Assert.AreEqual(fileName + "\r\n", stream.ReadToEnd());
+                Assert.AreEqual(fileName + Environment.NewLine, stream.ReadToEnd());
             }
         }
-
+        
         [TestCase("")]
         [TestCase(" ")]
         [TestCase(null)]

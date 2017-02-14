@@ -41,7 +41,7 @@ namespace SudokuSolverTests.Repositories.Input.Reader
         [TestCase("file2")]
         public void ReaderConcrete_OpenFile_Success(string fileName)
         {
-            using (var stream = Repo.ReaderFactory.GetReader().OpenFile(fileName))
+            using (var stream = Repo.ReaderFactory.GetReader(SudokuSolver.Repositories.FakeEnum.Real).OpenFile(fileName))
             {
                 Assert.AreEqual(fileName + Environment.NewLine, stream.ReadToEnd());
             }
@@ -52,7 +52,7 @@ namespace SudokuSolverTests.Repositories.Input.Reader
         [TestCase(null)]
         public void ReaderConcrete_OpenFile_InvalidFileName_Failure(string fileName)
         {
-            var ex = Assert.Throws<ArgumentException>(delegate { Repo.ReaderFactory.GetReader().OpenFile(fileName); });
+            var ex = Assert.Throws<ArgumentException>(delegate { Repo.ReaderFactory.GetReader(SudokuSolver.Repositories.FakeEnum.Real).OpenFile(fileName); });
 
             Assert.AreEqual("File name can't be empty", ex.Message);
         }
@@ -61,7 +61,7 @@ namespace SudokuSolverTests.Repositories.Input.Reader
         [TestCase("file3")]
         public void ReaderConcrete_OpenFile_FileDoesntExist_Failure(string fileName)
         {
-            var ex = Assert.Throws<IOException>(delegate { Repo.ReaderFactory.GetReader().OpenFile(fileName); });
+            var ex = Assert.Throws<IOException>(delegate { Repo.ReaderFactory.GetReader(SudokuSolver.Repositories.FakeEnum.Real).OpenFile(fileName); });
 
             Assert.AreEqual("Unable to find file", ex.Message);
         }

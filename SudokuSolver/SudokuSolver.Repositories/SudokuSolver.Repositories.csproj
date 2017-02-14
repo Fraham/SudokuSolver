@@ -30,7 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FakeEnum.cs" />
+    <Compile Include="Input\CSV\Reader.cs" />
     <Compile Include="Input\IInput.cs" />
     <Compile Include="Input\Reader\IReader.cs" />
     <Compile Include="Input\Reader\ReaderConcrete.cs" />
@@ -48,9 +51,7 @@
     <Compile Include="Input\Reader\ReaderFake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Input\CSV\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

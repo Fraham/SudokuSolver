@@ -30,7 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FakeEnum.cs" />
+    <Compile Include="Input\CSV\Reader.cs" />
+    <Compile Include="Input\IInput.cs" />
     <Compile Include="Input\Reader\IReader.cs" />
     <Compile Include="Input\Reader\ReaderConcrete.cs" />
     <Compile Include="Input\Reader\ReaderFactory.cs" />

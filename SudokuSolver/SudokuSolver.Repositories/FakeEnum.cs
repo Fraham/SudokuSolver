@@ -3,6 +3,7 @@
     public enum FakeEnum
     {
         Real,
-        Fake
+        Fake,
+        NotSet
     }
 }

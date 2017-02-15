@@ -33,6 +33,8 @@
             this.btnProcess = new System.Windows.Forms.Button();
             this.btnBigTask = new System.Windows.Forms.Button();
             this.btnComplete = new System.Windows.Forms.Button();
+            this.btnOpenCSV = new System.Windows.Forms.Button();
+            this.ofdOpenCSV = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // txtDisplay
@@ -84,11 +86,26 @@
             this.btnComplete.UseVisualStyleBackColor = true;
             this.btnComplete.Click += new System.EventHandler(this.btnComplete_Click);
             // 
+            // btnOpenCSV
+            // 
+            this.btnOpenCSV.Location = new System.Drawing.Point(487, 128);
+            this.btnOpenCSV.Name = "btnOpenCSV";
+            this.btnOpenCSV.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenCSV.TabIndex = 2;
+            this.btnOpenCSV.Text = "Open CSV";
+            this.btnOpenCSV.UseVisualStyleBackColor = true;
+            this.btnOpenCSV.Click += new System.EventHandler(this.btnOpenCSV_Click);
+            // 
+            // ofdOpenCSV
+            // 
+            this.ofdOpenCSV.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 458);
+            this.Controls.Add(this.btnOpenCSV);
             this.Controls.Add(this.btnComplete);
             this.Controls.Add(this.btnBigTask);
             this.Controls.Add(this.btnProcess);
@@ -107,6 +124,8 @@
         private System.Windows.Forms.Button btnProcess;
         private System.Windows.Forms.Button btnBigTask;
         private System.Windows.Forms.Button btnComplete;
+        private System.Windows.Forms.Button btnOpenCSV;
+        private System.Windows.Forms.OpenFileDialog ofdOpenCSV;
     }
 }
 

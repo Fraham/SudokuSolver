@@ -49,6 +49,7 @@
     <Compile Include="Input\Reader\ReaderConcrete.cs" />
     <Compile Include="Input\Reader\ReaderFactory.cs" />
     <Compile Include="Input\Reader\ReaderFake.cs" />
+    <Compile Include="Input\Text\Reader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

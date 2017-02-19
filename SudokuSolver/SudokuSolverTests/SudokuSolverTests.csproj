@@ -63,6 +63,7 @@
     <Compile Include="Repositories\Input\CSV\ReaderTests.cs" />
     <Compile Include="Repositories\Input\Reader\ReaderConcreteTests.cs" />
     <Compile Include="Repositories\Input\Reader\ReaderFakeTests.cs" />
+    <Compile Include="Repositories\Input\Text\ReaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SudokuSolver.Repositories\SudokuSolver.Repositories.csproj">

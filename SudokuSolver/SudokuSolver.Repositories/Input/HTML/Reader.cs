@@ -6,7 +6,7 @@ namespace SudokuSolver.Repositories.Input.HTML
 {
     public class Reader : IInput
     {
-        private IEnumerable<string> avaiableWebsites = new List<string> { "" };
+        private IEnumerable<string> avaiableWebsites = new List<string> { "show.websudoku.com" };
 
         public int[] GetGrid(string stringURL)
         {
@@ -22,7 +22,18 @@ namespace SudokuSolver.Repositories.Input.HTML
                 throw new ArgumentException($"{stringURL} is not supported");
             }
 
-            throw new NotImplementedException();
+            return GetReader(url.Host).GetGrid(stringURL);
+        }
+
+        private IURLReader GetReader(string hostUrl)
+        {
+            IURLReader reader = null;
+            if (hostUrl.ToLower().Equals("show.websudoku.com"))
+            {
+                reader = new WebSudoku.Reader();
+            }
+
+            return reader;
         }
     }
 }

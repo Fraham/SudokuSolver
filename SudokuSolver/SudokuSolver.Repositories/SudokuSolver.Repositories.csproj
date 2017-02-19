@@ -34,6 +34,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,7 +45,13 @@
   <ItemGroup>
     <Compile Include="FakeEnum.cs" />
     <Compile Include="Input\CSV\Reader.cs" />
+    <Compile Include="Input\HTML\ClientFactory.cs" />
+    <Compile Include="Input\HTML\HTMLClient.cs" />
+    <Compile Include="Input\HTML\HTMLFake.cs" />
+    <Compile Include="Input\HTML\IHTMLClient.cs" />
+    <Compile Include="Input\HTML\IURLReader.cs" />
     <Compile Include="Input\HTML\Reader.cs" />
+    <Compile Include="Input\HTML\WebSudoku\Reader.cs" />
     <Compile Include="Input\IInput.cs" />
     <Compile Include="Input\Reader\IReader.cs" />
     <Compile Include="Input\Reader\ReaderConcrete.cs" />

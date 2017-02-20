@@ -60,16 +60,30 @@
     <Compile Include="Models\GridTests.cs" />
     <Compile Include="Models\RowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Input\CSV\ReaderTests.cs" />
+    <Compile Include="Repositories\Input\HTML\ClientFactoryTests.cs" />
+    <Compile Include="Repositories\Input\HTML\HTMLClientTests.cs" />
+    <Compile Include="Repositories\Input\HTML\HTMLFakeTests.cs" />
+    <Compile Include="Repositories\Input\HTML\ReaderTests.cs" />
+    <Compile Include="Repositories\Input\Reader\ReaderConcreteTests.cs" />
+    <Compile Include="Repositories\Input\Reader\ReaderFakeTests.cs" />
+    <Compile Include="Repositories\Input\Text\ReaderTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SudokuSolver.Repositories\SudokuSolver.Repositories.csproj">
+      <Project>{d0c71967-859a-4ac3-90f7-4b7be9f0a8cd}</Project>
+      <Name>SudokuSolver.Repositories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SudokuSolver\SudokuSolver.csproj">
       <Project>{1EC1EBF0-96F7-44A3-AF1D-D35460B69AE5}</Project>
       <Name>SudokuSolver</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

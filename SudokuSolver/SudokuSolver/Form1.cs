@@ -42,5 +42,20 @@ namespace SudokuSolver
         {
             txtDisplay.Text = grid.CompleteGrid();
         }
+
+        private void btnOpenCSV_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = ofdOpenCSV.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                Repositories.Input.CSV.Reader reader = new Repositories.Input.CSV.Reader();
+
+                grid = Helper.GridHelper.Get(reader.GetGrid(ofdOpenCSV.FileName));
+
+                txtDisplay.Text = grid.ToString;
+            }
+
+        }
     }
 }

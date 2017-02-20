@@ -61,6 +61,10 @@
     <Compile Include="Models\RowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Input\CSV\ReaderTests.cs" />
+    <Compile Include="Repositories\Input\HTML\ClientFactoryTests.cs" />
+    <Compile Include="Repositories\Input\HTML\HTMLClientTests.cs" />
+    <Compile Include="Repositories\Input\HTML\HTMLFakeTests.cs" />
+    <Compile Include="Repositories\Input\HTML\ReaderTests.cs" />
     <Compile Include="Repositories\Input\Reader\ReaderConcreteTests.cs" />
     <Compile Include="Repositories\Input\Reader\ReaderFakeTests.cs" />
     <Compile Include="Repositories\Input\Text\ReaderTests.cs" />
